@@ -319,8 +319,7 @@ Clone the DativeTop source code, check out the current dev branch, and clone the
     > git clone https://github.com/dativebase/dativetop.git
     > cd dativetop
     > git fetch origin -a
-    > git checkout dev/issue-4-offline-dativetop-clojurescipt-gui origin/dev/issue-4-offline-dativetop-clojurescipt-gui
-    > git checkout dev/build-on-windows origin/dev/build-on-windows
+    > git checkout -b dev/build-on-windows origin/dev/build-on-windows
     > git submodule update --init --recursive
 
 Make note of the location of Python and Pip. In my case, given the default
