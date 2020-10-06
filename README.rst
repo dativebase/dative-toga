@@ -3,6 +3,8 @@
 ================================================================================
 
 
+
+
 +------------------+
 | GUI              |
 | aol:        abc  |
@@ -68,6 +70,14 @@ from source::
     $ make create-old-instance OLD_NAME=myold
     $ make launch
 
+install:  ## Install all of the required dependencies
+pip install -r requirements.txt && \
+		pip install -r src/old/requirements/testsqlite.txt && \
+		pip install -e src/old/ && \
+		pip install -e src/dativetop/server/ && \
+		pip install requirements/wheels/dativetop_append_only_log_domain_model-0.0.1-py3-none-any.whl
+
+	initialize_old src/old/config.ini myold
 
 Detailed Source Install
 --------------------------------------------------------------------------------
@@ -287,6 +297,44 @@ Notes and Possible Issues
 Warning seemingly from Mac OS:
 
     2020-07-30 11:14:23.303 python[45386:5039192] *** WARNING: Method convertPointToBase: in class NSView is deprecated on 10.7 and later. It should not be used in new applications.
+
+
+Get it to build on Windows
+================================================================================
+
+Strategy 1: Use an Azure Windows Server 2019 Free Instance (2020-10)
+--------------------------------------------------------------------------------
+
+First, install Git and Python 3.6 using the pre-built installers available on
+GitHub. Then open PowerShell and run the following commands.
+
+Clone the DativeTop source code, check out the current dev branch, and clone the submodules::
+
+    > git clone https://github.com/dativebase/dativetop.git
+    > git fetch origin -a
+    > git checkout dev/issue-4-offline-dativetop-clojurescipt-gui origin/dev/issue-4-offline-dativetop-clojurescipt-gui
+    > git submodule update --init --recursive
+
+Make note of the location of Python and Pip. In my case, given the default
+install using the Python .exe installer, they were at::
+
+    > C:\Users\jrwdunham\AppData\Local\Programs\Python\Python36\python.exe
+    > C:\Users\jrwdunham\AppData\Local\Programs\Python\Python36\Scripts\pip.exe
+
+Create the virtual environment using ``venv``::
+
+    > C:\Users\jrwdunham\AppData\Local\Programs\Python\Python36\python.exe -m venv C:\Users\jrwdunham\Development\venv
+
+Activate the venv::
+
+    > cd Development
+    > .\venv\Scripts\Activate.ps1
+    (venv)>
+
+Build Dative::
+
+    $ make build-dative
+
 
 
 .. _`DativeTop cannot upload files`: https://github.com/dativebase/dativebase/issues/16
