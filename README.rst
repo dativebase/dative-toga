@@ -299,7 +299,7 @@ Warning seemingly from Mac OS:
     2020-07-30 11:14:23.303 python[45386:5039192] *** WARNING: Method convertPointToBase: in class NSView is deprecated on 10.7 and later. It should not be used in new applications.
 
 
-Get it to build on Windows
+Build on Windows
 ================================================================================
 
 Strategy 1: Use an Azure Windows Server 2019 Free Instance (2020-10)
@@ -308,11 +308,19 @@ Strategy 1: Use an Azure Windows Server 2019 Free Instance (2020-10)
 First, install Git and Python 3.6 using the pre-built installers available on
 GitHub. Then open PowerShell and run the following commands.
 
+Create a dev directory if you do not have one already::
+
+    > cd ~
+    > mkdir Development
+    > cd Development
+
 Clone the DativeTop source code, check out the current dev branch, and clone the submodules::
 
     > git clone https://github.com/dativebase/dativetop.git
+    > cd dativetop
     > git fetch origin -a
     > git checkout dev/issue-4-offline-dativetop-clojurescipt-gui origin/dev/issue-4-offline-dativetop-clojurescipt-gui
+    > git checkout dev/build-on-windows origin/dev/build-on-windows
     > git submodule update --init --recursive
 
 Make note of the location of Python and Pip. In my case, given the default
@@ -327,14 +335,28 @@ Create the virtual environment using ``venv``::
 
 Activate the venv::
 
-    > cd Development
+    > cd ~\Development
     > .\venv\Scripts\Activate.ps1
     (venv)>
 
-Build Dative::
+Extract the pre-build Dative and move it to ``src/dative/dist/``::
 
-    $ make build-dative
+    (venv)> cd dativetop\src\dative\releases
+    (venv)> tar -xvzf release-2c18bdf158fc8664404e67e5530b9a95a18d6d11.tar.gz
+    (venv)> mv release-2c18bdf158fc8664404e67e5530b9a95a18d6d11 ..\dist
+    (venv)> cd ~\Development\dativetop
 
+Install DativeTop's Python dependencies::
+
+    (venv)> pip3 install -r requirements.txt
+    (venv)> pip3 install -r src/old/requirements/testsqlite.txt
+		(venv)> pip3 install -e src/old/
+		(venv)> pip3 install -e src/dativetop/server/
+		(venv)> pip3 install requirements/wheels/dativetop_append_only_log_domain_model-0.0.1-py3-none-any.whl
+
+Initialize an OLD named ``testold``::
+
+	  (venv)> initialize_old src\old\config.ini testold
 
 
 .. _`DativeTop cannot upload files`: https://github.com/dativebase/dativebase/issues/16
