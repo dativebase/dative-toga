@@ -355,8 +355,11 @@ Install DativeTop's Python dependencies::
 
 Initialize an OLD named ``testold``::
 
-	  (venv)> initialize_old src\old\config.ini testold
+	  (venv)> initialize_old src\old\configlocal.ini testold
 
+Launch DativeTop::
+
+	  (venv)> python -m dativetop
 
 .. _`DativeTop cannot upload files`: https://github.com/dativebase/dativebase/issues/16
 .. _`DativeBase`: https://github.com/dativebase/dativebase
