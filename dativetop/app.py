@@ -323,133 +323,133 @@ class DativeTop(toga.App):
         """
         self.commands = toga.CommandSet(self.factory)
 
-        about_cmd = toga.Command(
-            self.about_cmd,
-            label='About DativeTop',
-            group=toga.Group.APP,
-            section=0)
+        # about_cmd = toga.Command(
+        #     self.about_cmd,
+        #     label='About DativeTop',
+        #     group=toga.Group.APP,
+        #     section=0)
 
-        cut_cmd = toga.Command(
-            self.cut_cmd,
-            label='Cut',
-            shortcut=toga.Key.MOD_1 + 'x',
-            group=toga.Group.EDIT,
-            section=0)
+        # cut_cmd = toga.Command(
+        #     self.cut_cmd,
+        #     label='Cut',
+        #     shortcut=toga.Key.MOD_1 + 'x',
+        #     group=toga.Group.EDIT,
+        #     section=0)
 
-        copy_cmd = toga.Command(
-            self.copy_cmd,
-            label='Copy',
-            shortcut=toga.Key.MOD_1 + 'c',
-            group=toga.Group.EDIT,
-            section=0)
+        # copy_cmd = toga.Command(
+        #     self.copy_cmd,
+        #     label='Copy',
+        #     shortcut=toga.Key.MOD_1 + 'c',
+        #     group=toga.Group.EDIT,
+        #     section=0)
 
-        paste_cmd = toga.Command(
-            self.paste_cmd,
-            label='Paste',
-            shortcut=toga.Key.MOD_1 + 'v',
-            group=toga.Group.EDIT,
-            section=0)
+        # paste_cmd = toga.Command(
+        #     self.paste_cmd,
+        #     label='Paste',
+        #     shortcut=toga.Key.MOD_1 + 'v',
+        #     group=toga.Group.EDIT,
+        #     section=0)
 
-        select_all_cmd = toga.Command(
-            self.select_all_cmd,
-            label='Select All',
-            shortcut=toga.Key.MOD_1 + 'a',
-            group=toga.Group.EDIT,
-            section=0)
+        # select_all_cmd = toga.Command(
+        #     self.select_all_cmd,
+        #     label='Select All',
+        #     shortcut=toga.Key.MOD_1 + 'a',
+        #     group=toga.Group.EDIT,
+        #     section=0)
 
-        quit_cmd = toga.Command(
-            self.quit_cmd,
-            'Quit DativeTop',
-            shortcut=toga.Key.MOD_1 + 'q',
-            group=toga.Group.APP,
-            section=sys.maxsize)
+        # quit_cmd = toga.Command(
+        #     self.quit_cmd,
+        #     'Quit DativeTop',
+        #     shortcut=toga.Key.MOD_1 + 'q',
+        #     group=toga.Group.APP,
+        #     section=sys.maxsize)
 
-        visit_dative_in_browser_cmd = toga.Command(
-            self.visit_dative_in_browser_cmd,
-            label='Visit Dative in Browser',
-            group=toga.Group.HELP,
-            order=0)
+        # visit_dative_in_browser_cmd = toga.Command(
+        #     self.visit_dative_in_browser_cmd,
+        #     label='Visit Dative in Browser',
+        #     group=toga.Group.HELP,
+        #     order=0)
 
-        visit_old_in_browser_cmd = toga.Command(
-            self.visit_old_in_browser_cmd,
-            label='Visit OLD in Browser',
-            group=toga.Group.HELP,
-            order=1)
+        # visit_old_in_browser_cmd = toga.Command(
+        #     self.visit_old_in_browser_cmd,
+        #     label='Visit OLD in Browser',
+        #     group=toga.Group.HELP,
+        #     order=1)
 
-        visit_old_web_site_cmd = toga.Command(
-            self.visit_old_web_site_cmd,
-            label='Visit OLD Web Site',
-            group=toga.Group.HELP,
-            order=3)
+        # visit_old_web_site_cmd = toga.Command(
+        #     self.visit_old_web_site_cmd,
+        #     label='Visit OLD Web Site',
+        #     group=toga.Group.HELP,
+        #     order=3)
 
-        visit_dative_web_site_cmd = toga.Command(
-            self.visit_dative_web_site_cmd,
-            label='Visit Dative Web Site',
-            group=toga.Group.HELP,
-            order=2)
+        # visit_dative_web_site_cmd = toga.Command(
+        #     self.visit_dative_web_site_cmd,
+        #     label='Visit Dative Web Site',
+        #     group=toga.Group.HELP,
+        #     order=2)
 
-        reload_cmd = toga.Command(
-            self.reload_cmd,
-            label='Reload DativeTop',
-            shortcut=toga.Key.MOD_1 + 'r',
-            group=toga.Group.VIEW)
+        # reload_cmd = toga.Command(
+        #     self.reload_cmd,
+        #     label='Reload DativeTop',
+        #     shortcut=toga.Key.MOD_1 + 'r',
+        #     group=toga.Group.VIEW)
 
-        reset_cmd = toga.Command(
-            self.reset_dative_app_settings_cmd,
-            label='Reset Dative',
-            shortcut=toga.Key.MOD_1 + 'k',
-            group=toga.Group.VIEW)
+        # reset_cmd = toga.Command(
+        #     self.reset_dative_app_settings_cmd,
+        #     label='Reset Dative',
+        #     shortcut=toga.Key.MOD_1 + 'k',
+        #     group=toga.Group.VIEW)
 
-        view_dativetop_gui_cmd = toga.Command(
-            self.view_dativetop_gui_cmd,
-            label='DativeTop',
-            shortcut=toga.Key.MOD_1 + 't',
-            group=toga.Group.VIEW,
-            order=2)
+        # view_dativetop_gui_cmd = toga.Command(
+        #     self.view_dativetop_gui_cmd,
+        #     label='DativeTop',
+        #     shortcut=toga.Key.MOD_1 + 't',
+        #     group=toga.Group.VIEW,
+        #     order=2)
 
-        view_dative_gui_cmd = toga.Command(
-            self.view_dative_gui_cmd,
-            label='Dative',
-            shortcut=toga.Key.MOD_1 + 'd',
-            group=toga.Group.VIEW,
-            order=3)
+        # view_dative_gui_cmd = toga.Command(
+        #     self.view_dative_gui_cmd,
+        #     label='Dative',
+        #     shortcut=toga.Key.MOD_1 + 'd',
+        #     group=toga.Group.VIEW,
+        #     order=3)
 
-        history_group = toga.Group('History', order=70)
+        # history_group = toga.Group('History', order=70)
 
-        back_cmd = toga.Command(
-            self.back_cmd,
-            label='Back',
-            shortcut=toga.Key.MOD_1 + '[',
-            group=history_group)
+        # back_cmd = toga.Command(
+        #     self.back_cmd,
+        #     label='Back',
+        #     shortcut=toga.Key.MOD_1 + '[',
+        #     group=history_group)
 
-        forward_cmd = toga.Command(
-            self.forward_cmd,
-            label='Forward',
-            shortcut=toga.Key.MOD_1 + ']',
-            group=history_group)
+        # forward_cmd = toga.Command(
+        #     self.forward_cmd,
+        #     label='Forward',
+        #     shortcut=toga.Key.MOD_1 + ']',
+        #     group=history_group)
 
         self.commands.add(
             # DativeTop
-            about_cmd,
-            quit_cmd,
+            # about_cmd,
+            # quit_cmd,
             # Edit
-            cut_cmd,
-            copy_cmd,
-            paste_cmd,
-            select_all_cmd,
+            # cut_cmd,
+            # copy_cmd,
+            # paste_cmd,
+            # select_all_cmd,
             # View
-            reload_cmd,
-            reset_cmd,
-            view_dativetop_gui_cmd,
-            view_dative_gui_cmd,
+            # reload_cmd,
+            # reset_cmd,
+            # view_dativetop_gui_cmd,
+            # view_dative_gui_cmd,
             # History
-            back_cmd,
-            forward_cmd,
+            # back_cmd,
+            # forward_cmd,
             # Help
-            visit_dative_in_browser_cmd,
-            visit_old_in_browser_cmd,
-            visit_old_web_site_cmd,
-            visit_dative_web_site_cmd,
+            # visit_dative_in_browser_cmd,
+            # visit_old_in_browser_cmd,
+            # visit_old_web_site_cmd,
+            # visit_dative_web_site_cmd,
         )
 
 
