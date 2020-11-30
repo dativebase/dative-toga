@@ -3,27 +3,6 @@
 ================================================================================
 
 
-
-
-+------------------+
-| GUI              |
-| aol:        abc  |
-| server-aol: abc  |
-+------------------+
-
-+------------------+
-| Server           |
-| aol:        abcd |
-+------------------+
-
-
-DativeTop local services URLs:
-
-- http://127.0.0.1:5678/
-- http://127.0.0.1:5677/
-- http://127.0.0.1:5676/
-- http://127.0.0.1:5679/
-
 `DativeBase`_ is *web-based* software for linguistic fieldwork. DativeTop is
 DativeBase as a *desktop* application. It is `Dative`_ and the `OLD`_ wrapped
 in a `Toga`_ and packaged into a `Briefcase`_.
@@ -70,14 +49,18 @@ from source::
     $ make create-old-instance OLD_NAME=myold
     $ make launch
 
-install:  ## Install all of the required dependencies
-pip install -r requirements.txt && \
-		pip install -r src/old/requirements/testsqlite.txt && \
-		pip install -e src/old/ && \
-		pip install -e src/dativetop/server/ && \
-		pip install requirements/wheels/dativetop_append_only_log_domain_model-0.0.1-py3-none-any.whl
+To install all of the required dependencies manually::
 
-	initialize_old src/old/config.ini myold
+    $ pip install -r requirements.txt && \
+		$ pip install -r src/old/requirements/testsqlite.txt && \
+		$ pip install -e src/old/ && \
+		$ pip install -e src/dativetop/server/ && \
+		$ pip install requirements/wheels/dativetop_append_only_log_domain_model-0.0.1-py3-none-any.whl
+
+This command may be useful::
+
+	  $ initialize_old src/old/config.ini myold
+
 
 Detailed Source Install
 --------------------------------------------------------------------------------
@@ -355,11 +338,9 @@ Install DativeTop's Python dependencies::
 
 Initialize an OLD named ``testold``::
 
-	  (venv)> initialize_old src\old\configlocal.ini testold
+    (venv)> initialize_old src\old\configlocal.ini myold
 
 Launch DativeTop::
-
-	  (venv)> python -m dativetop
 
 .. _`DativeTop cannot upload files`: https://github.com/dativebase/dativebase/issues/16
 .. _`DativeBase`: https://github.com/dativebase/dativebase

@@ -26,6 +26,10 @@ Do the above two steps with Make and tmux::
 
     $ make run-repl
 
+Build a production release::
+
+    $ npx shadow-cljs release dativetop-gui
+
 
 Connect to Shadow-CLJS nREPL with Spacemacs and Cider
 ================================================================================
