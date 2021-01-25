@@ -65,56 +65,46 @@ This command may be useful::
 Detailed Source Install
 --------------------------------------------------------------------------------
 
-First, Ensure that you have GNU Make installed by running ``make -v``. Then
-create and activate a Python 3.6 (or 3.5) virtual environment::
+Detailed MacOS Source Install
+````````````````````````````````````````````````````````````````````````````````
 
-    $ python3 --version
-    Python 3.6.0
-    $ python3 -m venv venv
-    $ source venv/bin/activate
+The following instructions should install DativeTop on Mac OS.
+
+Activate a Python 3.6 virtual environment (creating it first with ``python -m
+venv venv`` if needed)::
+
+    $ source ../venv3.6.5/bin/activate.fish
     (venv) $
-
-.. note:: As of 2020-07, my local venv is broken. At present, the one at
-          ``../venv3.6.5`` should be used::
-
-              source ../venv3.6.5/bin/activate.fish
 
 Making sure you are in the directory containing this file, clone the Dative and
 OLD submodules using the following git command::
 
-    (venv) $ git submodule update --init --recursive
+Extract the pre-built Dative (JavaScript) source to ``src/dative/dist/``::
 
-Then build Dative, i.e., compile its CoffeeScript source to a single minified
-JavaScript file. (Note: you must install NodeJS first in order for this to
-work; on a Mac ``brew install node`` should work.)::
+    $ rm -rf src/dative/dist/
+    $ cd src/dative/releases/
+    $ tar -zxvf release-2c18bdf158fc8664404e67e5530b9a95a18d6d11.tar.gz
+    $ cp -r release-9e40102c7fa79618964df7ac9a0a370cc60ee9bd ./../dist
+    $ cd ../../..
 
-    (venv) $ make build-dative
+Install DativeTop's (the Toga/Briefcase app's) Python dependencies::
 
-.. note:: As of 2020-07, building of Dative is failing due to issues with the
-          build tool and the deprecated state of CoffeeScript. The current
-          workaround is to use a previously built Dative. See the source at
-          /Users/joeldunham/Development/dative-dist-2020-07-20/dative/dist/.
-          Instead of the above command, run::
-              rm -rf src/dative/dist/
-              cp -r /Users/joeldunham/Development/dative-dist-2020-07-20/dative/dist \
-                  src/dative/dist
+    (venv3.6.5)$ pip install -r requirements.txt
 
-Install the `BeeWare`_ suite, the OLD's requirements, and the OLD
-itself in development mode using either the following make rule::
+Install the OLD's requirements and the OLD itself in development mode::
 
-    (venv) $ make install
+    (venv3.6.5)$ pip install -r src/old/requirements/testsqlite.txt
+    (venv3.6.5)$ pip install -e src/old/
 
-or these separate ``pip install`` commands::
+Install the DativeTop Server's Python dependencies::
 
-    (venv) $ pip install -r requirements.txt
-    (venv) $ pip install -r src/old/requirements/testsqlite.txt
-    (venv) $ pip install -e src/old/
-    (venv) $ pip install -e src/dativetop/server/dativetopserver/
+    (venv3.6.5)$ pip install -e src/dativetop/server/
+		(venv3.6.5)$ pip install requirements/wheels/dativetop_append_only_log_domain_model-0.0.1-py3-none-any.whl
 
 Create the filesystem structure and (SQLite) database for a local OLD named
 "myold"::
 
-    (venv) $ make create-old-instance OLD_NAME=myold
+    (venv3.6.5)$ make create-old-instance OLD_NAME=myold
 
 The above command will create the OLD's SQLite file and its filesystem
 structure under ``./oldinstances/``:
@@ -122,12 +112,24 @@ structure under ``./oldinstances/``:
 - SQLite database file: ``oldinstances/dbs/myold.sqlite``
 - OLD directory for saving, e.g., audio, files: ``oldinstances/myold/``
 
+The SQLite db can be accessed as follows::
+
+    (venv)$ sqlite3 oldinstances/dbs/myold.sqlite
+
+The ``create-old-instance`` command above tells Dative about the new OLD by
+adding an object to the array defined in::
+
+    src/dative/dist/servers.json
+
 The ``create-old-instance`` command also tells Dative that there is an OLD
 instance being served, in this case, at http://127.0.0.1:5679/myold/.
 
 You should now be able to launch DativeTop with the following command::
 
     $ make launch
+
+TODO: return here. The DativeTop launched via the above is not yet at basic
+functionality.
 
 The above command should open DativeTop in a native window for your platform.
 That window will display a WebView wherein Dative should be running. You should
