@@ -67,7 +67,7 @@ setup(
         'macos': {
             'icon': 'dativetop/icons/OLDIcon',
             'app_requires': [
-                'toga-cocoa==0.3.0.dev11',
+                'toga-cocoa==0.3.0.dev22',
             ]
         },
         'linux': {
