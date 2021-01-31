@@ -43,6 +43,82 @@ import dativetop.utils as dtutils
 logger = logging.getLogger(__name__)
 
 
+
+# TODO: stop doing this: ...
+os.environ['OLD_DB_RDBMS'] = 'sqlite'
+os.environ['OLD_SESSION_TYPE'] = 'file'
+
+
+class DativeTopWorking(toga.App):
+
+    def startup(self):
+        """
+        Construct and show the Toga application.
+
+        Usually, you would add your application to a main content box.
+        We then create a main window (with a name matching the app), and
+        show the main window.
+        """
+        main_box = toga.Box()
+
+        self.main_window = toga.MainWindow(title=self.formal_name)
+        self.main_window.content = main_box
+        self.main_window.show()
+
+
+def main():
+    return DativeTopWorking()
+
+
+
+
+
+
+"""DativeTop: a Toga app that serves Dative and the OLD locally.
+
+DativeTop transforms Dative/OLD into a desktop application using the Python
+Briefcase packaging tool.
+
+DativeTop serves the Dative JavaScript/CoffeeScript GUI (SPA) locally and
+displays it in a native WebView. It also serves the OLD locally. The local
+Dative instance can then be used to interact with the OLD instances being
+served by the local OLD.
+
+DativeTop provides its own interface for managing local OLD instances and
+configuring them to sync up with leader OLD instances on the Internet.
+
+The ultimate goal is to be able to distribute native binaries so that DativeTop
+can be easily installed and launched as a desktop application by non-technical
+users.
+"""
+
+from collections import namedtuple
+import json
+import logging
+import os
+import pprint
+import sys
+import threading
+import webbrowser
+
+import pyperclip
+import toga
+from toga.style import Pack
+from toga.style.pack import COLUMN, ROW, CENTER, LEFT, RIGHT
+
+import dativetop.logging
+import dativetop.constants as c
+import dativetop.communicate as dtc
+from dativetop.getsettings import get_settings
+import dativetop.introspect as dti
+import dativetop.javascripts as dtjs
+import dativetop.serve as dtserve
+import dativetop.utils as dtutils
+
+
+logger = logging.getLogger(__name__)
+
+
 # TODO: stop doing this: ...
 os.environ['OLD_DB_RDBMS'] = 'sqlite'
 os.environ['OLD_SESSION_TYPE'] = 'file'
@@ -92,7 +168,7 @@ def _verify_services(dativetop_app=None, dativetop_settings=None):
             ' running OLD instances to the DativeTop Server process. Error:'
             ' %s.', err)
     else:
-        logger.info(success)
+        logger.info('This is what we call success: %s', success)
 
 
 class DativeTop(toga.App):
@@ -118,6 +194,7 @@ class DativeTop(toga.App):
         """On startup, build the Dative and DativeTop JavaScript
         (WebView-hosted) GUIs and display the DativeTop one.
         """
+
         self.main_window = toga.MainWindow(
             title=self.name,
             size=(1500, 1000),
@@ -433,23 +510,23 @@ class DativeTop(toga.App):
             about_cmd,
             quit_cmd,
             # Edit
-            cut_cmd,
-            copy_cmd,
-            paste_cmd,
-            select_all_cmd,
+            # cut_cmd,
+            # copy_cmd,
+            # paste_cmd,
+            # select_all_cmd,
             # View
-            # reload_cmd,
-            # reset_cmd,
-            # view_dativetop_gui_cmd,
-            # view_dative_gui_cmd,
+            reload_cmd,
+            reset_cmd,
+            view_dativetop_gui_cmd,
+            view_dative_gui_cmd,
             # History
-            # back_cmd,
-            # forward_cmd,
+            back_cmd,
+            forward_cmd,
             # Help
-            # visit_dative_in_browser_cmd,
-            # visit_old_in_browser_cmd,
-            # visit_old_web_site_cmd,
-            # visit_dative_web_site_cmd,
+            visit_dative_in_browser_cmd,
+            visit_old_in_browser_cmd,
+            visit_old_web_site_cmd,
+            visit_dative_web_site_cmd,
         )
         #self.main_window.toolbar.add(about_cmd, quit_cmd)
 
@@ -473,3 +550,5 @@ def stop_services(stoppers):
 
 def main():
     launch_dativetop(start_services())
+
+

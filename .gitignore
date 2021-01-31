@@ -86,3 +86,5 @@ src/dativetop/gui/target/
 .coveragerc
 aol.txt
 .cpcache/
+
+src/dativetop.dist-info/
